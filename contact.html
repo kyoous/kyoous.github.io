@@ -11,7 +11,13 @@
 
 body {
         font-family: 'Architects Daughter';
-        padding-left: 192px;
+        padding-left: 200px;
+}
+
+#page-wrap {
+    text-align: left;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .sidenav {
@@ -43,6 +49,54 @@ body {
     width: 100%;
   }
 }
+input[type=text], textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #000000;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=email]{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: scale(0.8);
+  transition: 0.5s;
+}
+
+input[type="radio"]:checked ~{
+    opacity: 1;
+    max-height: 100px;
+    padding: 10px 20px;
+    transform: scale(1);
+    overflow: visible;
+  }
+
+
 
         </style>
 
@@ -55,20 +109,76 @@ body {
           <a href="contact.html"> Contact</a>
         </div>
       
+        <div id="page-wrap">
+          <h1>CONTACT FORM</h1>
+
         <form
         action="https://formspree.io/f/xeqnqzvw"
         method="POST"
       >
         <label>
           Your email:
-          <input type="email" name="_replyto">
         </label>
+          <input type="email" name="_replyto" required>
+
         <label>
-          Your message:
-          <textarea name="message"></textarea>
+            Your Address:
+          </label>
+            <input type="text" name="address" required>
+
+        <label>
+          Your city:
         </label>
-        <!-- your other form fields go here -->
-        <button type="submit">Send</button>
+          <input type="text" name="city" required>
+
+      <label>
+        Your postal code (Ex: A1A 1A1 ):
+      </label>
+        <input type="text" name="postalcode" pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]" required>
+
+        I have a question Yes<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"> No <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"><br>
+        <div id="ifYes" style="visibility:hidden">
+            What is your question? <textarea id='yes' name='yes' style="height:90px"></textarea>
+        </div>
+
+        I have a comment Yes<input type="radio" onclick="javascript:yesnoCheck2();" name="yesno2" id="yesCheck2"> No <input type="radio" onclick="javascript:yesnoCheck2();" name="yesno2" id="noCheck2"><br>
+        <div id="ifYes2" style="visibility:hidden">
+            What is your comment? <textarea id='yes2' name='yes2' style="height:90px"></textarea>
+        </div>
+
+        I have a hiring question Yes<input type="radio" onclick="javascript:yesnoCheck3();" name="yesno3" id="yesCheck3"> No <input type="radio" onclick="javascript:yesnoCheck3();" name="yesno3" id="noCheck3"><br>
+        <div id="ifYes3" style="visibility:hidden">
+            What is the hourly rate you are looking for in dollars? (EX. 1$) <input type='text' id='yes3' name='yes3' pattern="[^[0-9]+(\.[0-9]{1,2})?$]" required>
+        </div>
+        <input type="submit" value="submit">
       </form>
+      </div>
+
+
+      <script>
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.visibility = 'visible';
+    }
+    else document.getElementById('ifYes').style.visibility = 'hidden';
+
+}
+
+function yesnoCheck2() {
+    if (document.getElementById('yesCheck2').checked) {
+        document.getElementById('ifYes2').style.visibility = 'visible';
+    }
+    else document.getElementById('ifYes2').style.visibility = 'hidden';
+
+}
+
+function yesnoCheck3() {
+    if (document.getElementById('yesCheck3').checked) {
+        document.getElementById('ifYes3').style.visibility = 'visible';
+    }
+    else document.getElementById('ifYes3').style.visibility = 'hidden';
+
+}
+      </script>
 </body>
 </html>
